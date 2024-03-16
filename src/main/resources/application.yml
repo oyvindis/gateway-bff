@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    discovery:
+      client:
+        health-indicator:
+          enabled: false
+    gateway:
+      routes:
+        - id: kotlin-service
+          uri: http://localhost:8082
+          predicates:
+            - Path=/gateway-api/**
+          filters:
+            - RewritePath=/gateway-api/(?<segment>.*),/$\{segment}
