@@ -1,3 +1,29 @@
+management:
+  endpoint:
+    health:
+      enabled: true
+      show-components: never
+      show-details: never
+      probes:
+        enabled: true
+    prometheus:
+      enabled: true
+  endpoints:
+    enabled-by-default: false
+    jmx:
+      exposure:
+        exclude: '*'
+    web:
+      discovery:
+        enabled: false
+      exposure:
+        include: health, prometheus
+  server:
+    port: 8082
+
+server:
+  port: 8080
+
 spring:
   cloud:
     discovery:
@@ -7,8 +33,29 @@ spring:
     gateway:
       routes:
         - id: kotlin-service
-          uri: http://localhost:8082
+          uri: ${kotlin-service.url}
           predicates:
             - Path=/gateway-api/**
           filters:
             - RewritePath=/gateway-api/(?<segment>.*),/$\{segment}
+
+  main:
+    banner-mode: off
+    web-application-type: reactive
+
+  profiles:
+    default: local
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://dev-22151406.okta.com/oauth2/default
+
+springdoc:
+  cache:
+    disabled: true
+  swagger-ui:
+    urls:
+      - name: kotlin-service
+        url: /v3/api-docs/kotlin-service

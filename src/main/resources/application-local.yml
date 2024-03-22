@@ -1,0 +1,9 @@
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://dev-22151406.okta.com/oauth2/default
+
+kotlin-service:
+  url: https://www.oyvindis.com
