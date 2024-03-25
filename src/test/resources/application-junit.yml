@@ -1,0 +1,9 @@
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost/dummy/oauth2/default
+
+kotlin-service:
+  url: http://localhost
