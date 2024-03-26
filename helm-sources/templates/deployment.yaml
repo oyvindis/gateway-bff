@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: gateway-bff
+  name: gateway-bff
+  namespace: {{ required "Missing value NAMESPACE" .Values.NAMESPACE }}
+spec:
+  selector:
+    matchLabels:
+      app: gateway-bff
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: gateway-bff
+    spec:
+      containers:
+        - env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: prod
+          name: gateway-bff
+          image: oyvindis/gateway-bff
+          imagePullPolicy: Always
+      restartPolicy: Always
