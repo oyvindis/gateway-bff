@@ -23,6 +23,7 @@ management:
 
 server:
   port: 8080
+  max-http-request-header-size: 265536
 
 spring:
   cloud:
@@ -31,6 +32,8 @@ spring:
         health-indicator:
           enabled: false
     gateway:
+      httpclient:
+        max-header-size: 165536
       routes:
         - id: kotlin-service
           uri: ${kotlin-service.url}
