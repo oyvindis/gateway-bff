@@ -67,7 +67,7 @@ jobs:
         id: bake
 
       - name: Deploy to Kubernetes cluster
-        uses: Azure/k8s-deploy@v1.5
+        uses: Azure/k8s-deploy@v4.9
         with:
           manifests: ${{ steps.bake.outputs.manifestsBundle }}
           images: oyvindis/gateway-bff:${{ steps.vars.outputs.sha_short }}
