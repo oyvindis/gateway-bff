@@ -54,7 +54,7 @@ jobs:
 
       - name: Set K8s context
         id: setcontext
-        uses: azure/k8s-set-context@v1
+        uses: azure/k8s-set-context@v4
         with:
           method: kubeconfig
           kubeconfig: ${{ secrets.KUBE_CONFIG }}
