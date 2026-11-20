@@ -1,4 +1,4 @@
-FROM eclipse-temurin:21.0.4_7-jre-alpine
+FROM eclipse-temurin:21.0.13.1_2-jre-alpine
 
 ENV TZ=Europe/Oslo
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
